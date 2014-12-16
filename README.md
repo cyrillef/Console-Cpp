@@ -34,8 +34,8 @@ Setup Instructions
 
 	5. Patch the:
 
-		- Release/include/http_constants.dat
-		- Release/include/oauth1.h
+		- Release/include/cpprest/http_constants.dat
+		- Release/include/cpprest/oauth1.h
 		- Release/src/http/oauth/oauth1.cpp
 
 	  files with the ones from the Casablanca directory from the ReCap download
