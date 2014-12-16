@@ -44,7 +44,7 @@ Setup Instructions
 	
 	7. Copy for each configurations the following files (target folder may change depending of your platform/configuration)
 	
-		- Release/include/oauth1.h and Release/include/http_constants.dat to 'Autodesk-ReCap-Samples\Console Cpp\packages\cpprestsdk.2.2.0\build\native\include\cpprest'
+		- Release/include/cpprest/oauth1.h and Release/include/cpprest/http_constants.dat to 'Autodesk-ReCap-Samples\Console Cpp\packages\cpprestsdk.2.2.0\build\native\include\cpprest'
 		- <Your_Casablanca>\Binaries\x64\Debug\*.lib to 'Autodesk-ReCap-Samples\Console Cpp\packages\cpprestsdk.2.2.0\build\native\lib\x64\v110\Debug\Desktop'
 		- <Your_Casablanca>\Binaries\x64\Debug\*.* to 'Autodesk-ReCap-Samples\Console Cpp\packages\cpprestsdk.2.2.0\build\native\bin\x64\v110\Debug\Desktop'
 	
