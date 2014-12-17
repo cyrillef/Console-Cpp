@@ -134,7 +134,7 @@ ReCap -c result
 Older version of Casablanca
 -------------------------
 
-If you prefer using v2.2.0 to not have the dependencies on openssl and zlib, read [this](README-v2.2.0.md) and get the [v2.2.0](https://github.com/Developer-ReCap-Autodesk/Console-Cpp/releases) tag version of the sample.
+If you prefer using v2.2.0 to not have the dependencies on openssl and zlib, read [this](https://github.com/Developer-ReCap-Autodesk/Console-Cpp/tree/bc0b7d10eca467910bb0f5c74cf268e849c14639) and get the [v2.2.0](https://github.com/Developer-ReCap-Autodesk/Console-Cpp/releases) tag version of the sample.
 
 
 --------
