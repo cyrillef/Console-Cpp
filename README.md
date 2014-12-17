@@ -12,13 +12,13 @@ This sample is dependent of the following 3rd party extension:
 
 * The [Casablanca C++ RESTful SDK](https://casablanca.codeplex.com/) - version 2.2.0
 
-The sample is currently based on version 2.2.0 (while the project is now version 2.3.0), you can get the 2.2.0 fixed version from my fork here:
-https://casablanca.codeplex.com/SourceControl/network/forks/cyrillef/Casablanca
-
 Because the oAuth1.0a experimental implementation is buggy, you will need to modify the source code and recompile the library.
 Required code changes has been submitted to Microsoft for future release.
 
-The Pull request has been accepted and merge into the development branch, but not yet on version 2.3.0 - so you still need to follow the instructions below.
+The sample is currently based on version 2.2.0 (while the Casablanca project is now version 2.3.0), you can get the 2.2.0 fixed version from my fork here:
+https://casablanca.codeplex.com/SourceControl/network/forks/cyrillef/Casablanca
+
+<b>Note</b>: The Pull request has been accepted and merge into the development branch, but not yet on version 2.3.0 - so you still need to follow the instructions below.
 
 
 Setup Instructions
@@ -28,16 +28,25 @@ Setup Instructions
 
 	1. Open the ReCap project in Visual Studio 2012 (or 2013)
 
-	2. Compile (this is required to force NuGet to create the Casablanca NuGet local package)
+	2. Compile. The Build will fail, but this step is required to force NuGet to create the Casablanca NuGet local package.
 
-	3. Download Casablanca source code from [https://casablanca.codeplex.com/SourceControl/latest#](https://casablanca.codeplex.com/SourceControl/latest#)
+	3. Download Casablanca source code from CodePlex or my fork
+	
+	    git clone https://git01.codeplex.com/casablanca
+		cd casablanca
+		git tag -l
+		git checkout v2.2.0
+		
+		or
+		
+		git clone https://git01.codeplex.com/forks/cyrillef/casablanca
 
 	4. Open the Casablanca project in Visual Studio 2012 (or 2013)
 	
 		- casablanca110.desktop.sln = Visual Studio 2012
 		- casablanca120.desktop.sln = Visual Studio 2013
 
-	5. Patch the:
+	5. Patch the following files if you cloned from CodePles: (no need if you cloned from my fork)
 
 		- Release/include/cpprest/http_constants.dat
 		- Release/include/cpprest/oauth1.h
@@ -45,7 +54,7 @@ Setup Instructions
 
 	  files with the ones from the Casablanca directory from the ReCap download
 	  
-	6. Recompile Casablanca in the configurations you need
+	6. Recompile Casablanca in the configurations you need (typically x64).
 	
 	7. Copy for each configurations the following files (target folder may change depending of your platform/configuration)
 	
