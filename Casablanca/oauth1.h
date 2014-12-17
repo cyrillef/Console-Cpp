@@ -35,6 +35,13 @@ namespace web
 {
 namespace http
 {
+namespace client
+{
+    // Forward declaration to avoid circular include dependency.
+    class http_client_config;
+}
+
+/// oAuth 1.0 library.
 namespace oauth1
 {
 namespace details
@@ -91,6 +98,8 @@ public:
 
 } // namespace web::http::oauth1::details
 
+/// oAuth functionality is currently in beta.
+
 namespace experimental
 {
 
@@ -115,8 +124,8 @@ class oauth1_exception : public std::exception
 {
 public:
     oauth1_exception(utility::string_t msg) : m_msg(utility::conversions::to_utf8string(std::move(msg))) {}
-    ~oauth1_exception() _noexcept {}
-    const char* what() const _noexcept { return m_msg.c_str(); }
+    ~oauth1_exception() CPPREST_NOEXCEPT {}
+    const char* what() const CPPREST_NOEXCEPT { return m_msg.c_str(); }
 
 private:
     std::string m_msg;
@@ -446,18 +455,18 @@ private:
     utility::string_t m_consumer_key;
     utility::string_t m_consumer_secret;
     oauth1_token m_token;
-    bool m_is_authorization_completed;
-    oauth1_method m_method;
-    utility::string_t m_realm;
 
     utility::string_t m_temp_endpoint;
     utility::string_t m_auth_endpoint;
     utility::string_t m_token_endpoint;
     utility::string_t m_callback_uri;
+    utility::string_t m_realm;
+    oauth1_method m_method;
 
 	std::map<utility::string_t, utility::string_t> m_paramters_to_sign;
 
     utility::nonce_generator m_nonce_generator;
+    bool m_is_authorization_completed;
 };
 
 } // namespace web::http::oauth1::experimental

@@ -10,12 +10,12 @@ Dependencies
 --------------------
 This sample is dependent of the following 3rd party extension:
 
-* The [Casablanca C++ RESTful SDK](https://casablanca.codeplex.com/) - version 2.2.0
+* The [Casablanca C++ RESTful SDK](https://casablanca.codeplex.com/) - version 2.3.0
 
 Because the oAuth1.0a experimental implementation is buggy, you will need to modify the source code and recompile the library.
 Required code changes has been submitted to Microsoft for future release.
 
-The sample is currently based on version 2.2.0 (while the Casablanca project is now version 2.3.0), you can get the 2.2.0 fixed version from my fork here:
+The sample is currently based on version 2.3.0, you can get the 2.3.0 fixed version from my fork here:
 https://casablanca.codeplex.com/SourceControl/network/forks/cyrillef/Casablanca
 
 <b>Note</b>: The Pull request has been accepted and merge into the development branch, but not yet on version 2.3.0 - so you still need to follow the instructions below.
@@ -28,19 +28,25 @@ Setup Instructions
 
 	1. Open the ReCap project in Visual Studio 2012 (or 2013)
 
-	2. Compile. The Build will fail, but this step is required to force NuGet to create the Casablanca NuGet local package.
+	2. Compile. The Build will fail, but this step is required to force NuGet to create the Casablanca NuGet local package and its dependencies.
+	
+			openssl version 1.0.1.25
+			zlib version 1.2.8.7
 
 	3. Download Casablanca source code from CodePlex or my fork
 
 			git clone https://git01.codeplex.com/casablanca
 			cd casablanca
 			git tag -l
-			git checkout v2.2.0
+			git checkout v2.3.0
 
 		or
 
 			git clone https://git01.codeplex.com/forks/cyrillef/casablanca
-
+			cd casablanca
+			git tag -l
+			git checkout cyrillev2.3.0
+			
 	4. Open the Casablanca project in Visual Studio 2012 (or 2013)
 	
 		- casablanca110.desktop.sln = Visual Studio 2012
@@ -58,15 +64,15 @@ Setup Instructions
 	
 	7. Copy for each configurations the following files (target folder may change depending of your platform/configuration)
 	
-		- Release/include/cpprest/oauth1.h and Release/include/cpprest/http_constants.dat to 'Autodesk-ReCap-Samples\Console Cpp\packages\cpprestsdk.2.2.0\build\native\include\cpprest'
+		- Release/include/cpprest/oauth1.h and Release/include/cpprest/http_constants.dat to 'Autodesk-ReCap-Samples\Console Cpp\packages\cpprestsdk.2.3.0\build\native\include\cpprest'
 		
 		For Debug-x64
-		- <Your_Casablanca>\Binaries\x64\Debug\\*.lib to 'Autodesk-ReCap-Samples\Console Cpp\packages\cpprestsdk.2.2.0\build\native\lib\x64\v110\Debug\Desktop'
-		- <Your_Casablanca>\Binaries\x64\Debug\\*.dll and *.pdb to 'Autodesk-ReCap-Samples\Console Cpp\packages\cpprestsdk.2.2.0\build\native\bin\x64\v110\Debug\Desktop'
+		- <Your_Casablanca>\Binaries\x64\Debug\\*.lib to 'Autodesk-ReCap-Samples\Console Cpp\packages\cpprestsdk.2.3.0\build\native\lib\x64\v110\Debug\Desktop'
+		- <Your_Casablanca>\Binaries\x64\Debug\\*.dll and *.pdb to 'Autodesk-ReCap-Samples\Console Cpp\packages\cpprestsdk.2.3.0\build\native\bin\x64\v110\Debug\Desktop'
 
 		For Release-x64
-		- <Your_Casablanca>\Binaries\x64\Release\\*.lib to 'Autodesk-ReCap-Samples\Console Cpp\packages\cpprestsdk.2.2.0\build\native\lib\x64\v110\Release\Desktop'
-		- <Your_Casablanca>\Binaries\x64\Release\\*.dll and *.pdb to 'Autodesk-ReCap-Samples\Console Cpp\packages\cpprestsdk.2.2.0\build\native\bin\x64\v110\Release\Desktop'
+		- <Your_Casablanca>\Binaries\x64\Release\\*.lib to 'Autodesk-ReCap-Samples\Console Cpp\packages\cpprestsdk.2.3.0\build\native\lib\x64\v110\Release\Desktop'
+		- <Your_Casablanca>\Binaries\x64\Release\\*.dll and *.pdb to 'Autodesk-ReCap-Samples\Console Cpp\packages\cpprestsdk.2.3.0\build\native\bin\x64\v110\Release\Desktop'
 	
 	
 * Compile the ReCap sample
@@ -124,6 +130,12 @@ once 'progress' reports no error and completion at 100%
 ReCap -c properties
 ReCap -c result
 ```
+
+Older version of Casablanca
+-------------------------
+
+If you prefer using v2.2.0 to not have the dependencies on openssl and zlib, read [this](README-v2.2.0.md) and get the [v2.2.0](https://github.com/Developer-ReCap-Autodesk/Console-Cpp/releases) tag version of the sample.
+
 
 --------
 
