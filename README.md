@@ -31,15 +31,16 @@ Setup Instructions
 	2. Compile. The Build will fail, but this step is required to force NuGet to create the Casablanca NuGet local package.
 
 	3. Download Casablanca source code from CodePlex or my fork
-	
+```
 	    git clone https://git01.codeplex.com/casablanca
 		cd casablanca
 		git tag -l
 		git checkout v2.2.0
-		
+```
 		or
-		
+```
 		git clone https://git01.codeplex.com/forks/cyrillef/casablanca
+```
 
 	4. Open the Casablanca project in Visual Studio 2012 (or 2013)
 	
