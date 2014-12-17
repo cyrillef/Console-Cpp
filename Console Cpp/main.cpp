@@ -114,7 +114,8 @@ int _tmain (int argc, _TCHAR *argv []) {
 			case U('r'): // Refresh the oAuth token
 				if ( ReadTokens (token, secret, session) ) {
 					oauth1_token tokens (token, secret) ;
-					tokens.set_session (session) ;
+					//tokens.set_session (session) ;
+					tokens.set_additional_parameter (oauth_session_handle, session) ;
 					config.set_token (tokens) ;
 					if ( oAuthRefreshTokensAsync (config) ){
 						ucout << U("Failed to refresh your oAuth tokens! Exiting...") << std::endl ;
@@ -150,7 +151,8 @@ int _tmain (int argc, _TCHAR *argv []) {
 		}
 	} else {
 		oauth1_token tokens (token, secret) ;
-		tokens.set_session (session) ;
+		//tokens.set_session (session) ;
+		tokens.set_additional_parameter (oauth_session_handle, session) ;
 		config.set_token (tokens) ;
 		if ( oAuthRefreshTokensAsync (config) ) {
 			ucout << U("Failed to refresh the oAuth tokens! Trying to log you on...") << std::endl ;

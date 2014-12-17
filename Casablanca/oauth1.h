@@ -56,8 +56,7 @@ public:
         m_nonce(std::move(nonce)),
         m_extra_key(std::move(extra_key)),
         m_extra_value(std::move(extra_value))
-    {
-	}
+    {}
 
     const utility::string_t& timestamp() const { return m_timestamp; }
     void set_timestamp(utility::string_t timestamp) { m_timestamp = std::move(timestamp); }
@@ -163,13 +162,9 @@ public:
     /// <param name="secret">Token secret string to set.</param>
     void set_secret(utility::string_t secret) { m_secret = std::move(secret); }
 
-	const utility::string_t &session () const { return (m_session) ; }
-	const utility::string_t &user_name () const { return (m_user_name) ; }
-	const utility::string_t &user_guid () const { return (m_user_guid) ; }
-
-    void set_session (utility::string_t session) { m_session = std::move(session) ; }
-	void set_user_name (utility::string_t user_name) { m_user_name = std::move(user_name) ; }
-	void set_user_guid (utility::string_t user_guid) { m_user_guid = std::move(user_guid) ; }
+	const std::map<utility::string_t, utility::string_t> &additional_parameters () const { return (m_additional_parameters) ; }
+	void set_additional_parameter(utility::string_t paramName, utility::string_t paramValue) { m_additional_parameters [std::move(paramName)] = std::move(paramValue); }
+	void clear_additional_parameters() { m_additional_parameters.clear(); }
 
 private:
     friend class oauth1_config;
@@ -178,9 +173,8 @@ private:
 
     utility::string_t m_token;
     utility::string_t m_secret;
-	utility::string_t m_session ;
-	utility::string_t m_user_name ;
-	utility::string_t m_user_guid ;
+	std::map<utility::string_t, utility::string_t> m_additional_parameters ;
+
 };
 
 /// <summary>
@@ -240,9 +234,9 @@ public:
         return _request_token(_generate_auth_state(details::oauth1_strings::verifier, std::move(verifier)), false);
     }
 
-	pplx::task<void> refresh_token () {
-		return (_request_token (oauth1_config::_generate_auth_state (details::oauth1_strings::session_handle, std::move (m_token.session ())), false)) ;
-	}
+	pplx::task<void> refresh_token (utility::string_t key) {
+		return (_request_token (oauth1_config::_generate_auth_state (key, std::move (m_token.additional_parameters ().at (key))), false)) ;
+    }
 
     /// <summary>
     /// Get consumer key used in authorization and authentication.
@@ -405,7 +399,7 @@ public:
     const std::map<utility::string_t, utility::string_t>& parameters() const { return m_paramters_to_sign; }
     void add_parameter(utility::string_t key, utility::string_t value) { m_paramters_to_sign [key] =value; }
 	void set_parameters(std::map<utility::string_t, utility::string_t> &parameters) { m_paramters_to_sign .clear(); m_paramters_to_sign =parameters; }
-	void clear_parameter() { m_paramters_to_sign.clear(); }
+	void clear_parameters() { m_paramters_to_sign.clear(); }
 
 private:
     friend class web::http::client::http_client_config;

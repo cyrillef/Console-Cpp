@@ -31,3 +31,10 @@ bool SaveTokens (utility::string_t token, utility::string_t secret, utility::str
 
 int oAuthLogonAsync (oauth1_config &config) ;
 int oAuthRefreshTokensAsync (oauth1_config &config) ;
+
+#define oauth_session_handle U("oauth_session_handle")
+#define oauth_authorization_expires_in U("oauth_authorization_expires_in")
+#define oauth_expires_in U("oauth_expires_in")
+#define x_oauth_user_name U("x_oauth_user_name")
+#define x_oauth_user_guid U("x_oauth_user_guid")
+#define x_scope U("x_scope")

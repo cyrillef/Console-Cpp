@@ -107,7 +107,8 @@ int oAuthLogonAsync (oauth1_config &config) {
 				config.token_from_verifier (oauth_verifier).then ([&] () -> void {
 					auto token =config.token ().access_token () ;
 					auto secret =config.token ().secret () ;
-					auto session =config.token ().session () ;
+					//auto session =config.token ().session () ;
+					auto session =config.token ().additional_parameters ().at (oauth_session_handle) ;
 					ucout << U("oauth_token => ") << token << U(",") << std::endl
 						  << U("oauth_token_secret => ") << secret << std::endl
 						  << U("oauth_session_handle => ") << session << std::endl ;
@@ -147,10 +148,10 @@ int oAuthRefreshTokensAsync (oauth1_config &config) {
 	try {
 		//- Refresh the tokens
 		ucout << U("Refresh the tokens...") << std::endl ;
-		config.refresh_token ().then ([&] () -> void {
+		config.refresh_token (oauth_session_handle).then ([&] () -> void {
 			auto token =config.token ().access_token () ;
 			auto secret =config.token ().secret () ;
-			auto session =config.token ().session () ;
+			auto session =config.token ().additional_parameters ().at (oauth_session_handle) ;
 			ucout << U("oauth_token => ") << token << U(",") << std::endl
 				  << U("oauth_token_secret => ") << secret << std::endl
 				  << U("oauth_session_handle => ") << session << std::endl ;

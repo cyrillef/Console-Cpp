@@ -231,7 +231,6 @@ utility::string_t oauth1_config::_build_signature_base_string(http_request reque
     utility::ostringstream_t os;
     os << request.method();
     os << "&" << _build_base_string_uri(u);
-    //os << "&" << _build_normalized_parameters(std::move(u), std::move(state));
 
 	// http://oauth.net/core/1.0a/#signing_process
 	// 9.1.1.  Normalize Request Parameters
@@ -240,17 +239,6 @@ utility::string_t oauth1_config::_build_signature_base_string(http_request reque
 	//	- Parameters in the HTTP POST request body (with a content-type of application/x-www-form-urlencoded).
 	//	- HTTP GET parameters added to the URLs in the query part (as defined by [RFC3986] section 3).
 	if ( is_application_x_www_form_urlencoded (request) ) {
-	//concurrency::streams::istream isq =request.body () ;
-		//utility::string_t str (static_cast<concurrency::streams::stringstream const &>(concurrency::streams::stringstream () << isq.streambuf ()).str ()) ;
-		//utility::string_t str =request.body ().extract<utility::string_t> () ;
-		//auto buf_r =request.body ().streambuf () ;
-		//std::string body ;
-  //      body.resize ((std::string::size_type)buf_r.in_avail ()) ;
-  //      buf_r.getn ((uint8_t*)&body [0], body.size ()).get () ; // There is no risk of blocking.
-  //      utility::string_t str =conversions::to_string_t (std::move (body)) ;
-		//utility::ostringstream_t os2 ;
-		//os2 << request.body () ;
-		//utility::string_t str =os2.str () ;
 		concurrency::streams::stringstreambuf data ;
 		utility::string_t str ;
 		auto t =request.body ().read_to_end (data) ;
@@ -266,7 +254,6 @@ utility::string_t oauth1_config::_build_signature_base_string(http_request reque
 	} else {
 		os << "&" << _build_normalized_parameters(std::move(u), std::move(state));
 	}
-
     return os.str();
 }
 
@@ -323,27 +310,16 @@ pplx::task<void> oauth1_config::_request_token(oauth1_state state, bool is_temp_
         {
             throw oauth1_exception(U("parameter 'oauth_token_secret' missing from response: ") + body);
         }
-
+        
         // Here the token can be either temporary or access token.
         // The authorization is complete if it is access token.
         m_is_authorization_completed = !is_temp_token_request;
         m_token = oauth1_token(web::uri::decode (token_param->second), web::uri::decode (token_secret_param->second));
 
-		if ( !is_temp_token_request ) {
-			auto session =query.find (oauth1_strings::session_handle) ;
-			if ( session == query.end () )
-				throw oauth1_exception (U("parameter 'oauth_session_handle' missing from response: ") + body) ;
-			m_token.set_session (web::uri::decode (session->second)) ;
-
-			auto user_name =query.find (oauth1_strings::x_oauth_user_name) ;
-			if ( user_name == query.end () )
-				throw oauth1_exception (U("parameter 'x_oauth_user_name' missing from response: ") + body) ;
-			m_token.set_user_name (web::uri::decode (user_name->second)) ;
-
-			auto user_guid =query.find (oauth1_strings::x_oauth_user_guid) ;
-			if ( user_guid == query.end () )
-				throw oauth1_exception (U("parameter 'x_oauth_user_guid' missing from response: ") + body) ;
-			m_token.set_user_guid (web::uri::decode (user_guid->second)) ;
+		for ( const auto& qa : query ) {
+			if ( qa.first == oauth1_strings::token || qa.first == oauth1_strings::token_secret )
+				continue ;
+			m_token.set_additional_parameter (web::uri::decode (qa.first), web::uri::decode (qa.second)) ;
 		}
         
     });

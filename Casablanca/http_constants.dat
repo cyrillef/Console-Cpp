@@ -158,13 +158,6 @@ DAT(token,                          "oauth_token")
 DAT(token_secret,                   "oauth_token_secret")
 DAT(verifier,                       "oauth_verifier")
 DAT(version,                        "oauth_version")
-
-DAT(session_handle,                 "oauth_session_handle")
-DAT(authorization_expires_in,       "oauth_authorization_expires_in")
-DAT(expires_in,                     "oauth_expires_in")
-DAT(x_oauth_user_name,              "x_oauth_user_name")
-DAT(x_oauth_user_guid,              "x_oauth_user_guid")
-DAT(x_scope,                        "x_scope")
 #endif // _OAUTH1_STRINGS
 
 #ifdef _OAUTH2_STRINGS
