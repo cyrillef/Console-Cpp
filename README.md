@@ -10,10 +10,15 @@ Dependencies
 --------------------
 This sample is dependent of the following 3rd party extension:
 
-* The [Casablanca C++ RESTful SDK](https://casablanca.codeplex.com/)
+* The [Casablanca C++ RESTful SDK](https://casablanca.codeplex.com/) - version 2.2.0
+
+The sample is currently based on version 2.2.0 (while the project is now version 2.3.0), you can get the 2.2.0 fixed version from my fork here:
+https://casablanca.codeplex.com/SourceControl/network/forks/cyrillef/Casablanca
 
 Because the oAuth1.0a experimental implementation is buggy, you will need to modify the source code and recompile the library.
 Required code changes has been submitted to Microsoft for future release.
+
+The Pull request has been accepted and merge into the development branch, but not yet on version 2.3.0 - so you still need to follow the instructions below.
 
 
 Setup Instructions
@@ -45,8 +50,14 @@ Setup Instructions
 	7. Copy for each configurations the following files (target folder may change depending of your platform/configuration)
 	
 		- Release/include/cpprest/oauth1.h and Release/include/cpprest/http_constants.dat to 'Autodesk-ReCap-Samples\Console Cpp\packages\cpprestsdk.2.2.0\build\native\include\cpprest'
-		- <Your_Casablanca>\Binaries\x64\Debug\*.lib to 'Autodesk-ReCap-Samples\Console Cpp\packages\cpprestsdk.2.2.0\build\native\lib\x64\v110\Debug\Desktop'
-		- <Your_Casablanca>\Binaries\x64\Debug\*.* to 'Autodesk-ReCap-Samples\Console Cpp\packages\cpprestsdk.2.2.0\build\native\bin\x64\v110\Debug\Desktop'
+		
+		For Debug-x64
+		- <Your_Casablanca>\Binaries\x64\Debug\\*.lib to 'Autodesk-ReCap-Samples\Console Cpp\packages\cpprestsdk.2.2.0\build\native\lib\x64\v110\Debug\Desktop'
+		- <Your_Casablanca>\Binaries\x64\Debug\\*.dll and *.pdb to 'Autodesk-ReCap-Samples\Console Cpp\packages\cpprestsdk.2.2.0\build\native\bin\x64\v110\Debug\Desktop'
+
+		For Release-x64
+		- <Your_Casablanca>\Binaries\x64\Release\\*.lib to 'Autodesk-ReCap-Samples\Console Cpp\packages\cpprestsdk.2.2.0\build\native\lib\x64\v110\Release\Desktop'
+		- <Your_Casablanca>\Binaries\x64\Release\\*.dll and *.pdb to 'Autodesk-ReCap-Samples\Console Cpp\packages\cpprestsdk.2.2.0\build\native\bin\x64\v110\Release\Desktop'
 	
 	
 * Compile the ReCap sample

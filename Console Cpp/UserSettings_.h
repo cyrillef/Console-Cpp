@@ -34,7 +34,7 @@
 //#define ReCapKey U("your ReCap client key") // not used anymore
 #define ReCapUserID U("your_ReCap_user_ID") // Needed only for using the ReCapSceneList, otherwise bail
 
-#define Email U("your email address") // used for notification
+#define Email U("your_email_address") // used for notification
 
 // Do not edit
 #define OAUTH_REQUESTTOKEN OAUTH_HOST U("OAuth/RequestToken")
