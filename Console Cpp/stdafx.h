@@ -50,7 +50,7 @@
 #include <cpprest/http_listener.h>          // HTTP server
 #include <cpprest/json.h>                   // JSON library
 #include <cpprest/uri.h>                    // URI library
-#include <cpprest/http_helpers.h>
+#include <cpprest/details/http_helpers.h>
 #include <cpprest/oauth1.h>
 
 using namespace utility ;                   // Common utilities like string conversions

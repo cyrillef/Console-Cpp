@@ -1,81 +1,36 @@
-The C++ Console sample
-=====================
+# Autodesk Reality Capture API -- C++ Console sample
+-------------------
+[![language](https://img.shields.io/badge/language-C++-blue.svg)](https://www.visualstudio.com/)
+[![ReCap](https://img.shields.io/badge/Reality%20Capture%20API-v3.1%20-green.svg)](http://developer-recap-autodesk.github.io/)
+![Platforms](https://img.shields.io/badge/platform-windows-lightgray.svg)
+[![License](http://img.shields.io/:license-mit-blue.svg)](http://opensource.org/licenses/MIT)
 
 This sample is a command line sample where you control the various ReCap stage individually using one of the command below.
 
 <b>Note:</b> For using those samples you need a valid oAuth credential and a ReCap client ID. Visit this [page](http://developer-recap-autodesk.github.io/) for instructions to get on-board.
 
+## Motivation
+
+The Reality Capture API Beta provides a web service to create textured mesh from a set of photos, and can request an automatic 3D calibration. The REST API provides a similar service as the [Autodesk ReCap 360](http://www.autodesk.com/products/recap-360/overview) web application. The purpose of this sample is to show an application that can provide a Reality Capture work flow using photographic images.
+
+Description
+--------------------
+This sample uses the C++ based CPP REST SDK  to demonstrate how to use the Reality Capture API.
 
 Dependencies
 --------------------
 This sample is dependent of the following 3rd party extension:
 
-* The [Casablanca C++ RESTful SDK](https://casablanca.codeplex.com/) - version 2.3.0
-
-Because the oAuth1.0a experimental implementation is buggy, you will need to modify the source code and recompile the library.
-Required code changes has been submitted to Microsoft for future release.
-
-The sample is currently based on version 2.3.0, you can get the 2.3.0 fixed version from my fork here:
-https://casablanca.codeplex.com/SourceControl/network/forks/cyrillef/Casablanca
-
-<b>Note</b>: The Pull request has been accepted and merge into the development branch, but not yet on version 2.3.0 - so you still need to follow the instructions below.
+* The [C++ RESTful SDK](https://github.com/Microsoft/cpprestsdk) - version 2.8.0 (formerly known as Casablanca)
+* The Visual Studio project is referecing the library direcly, and will get the SDK during the first buuld.
 
 
 Setup Instructions
 -------------------------
 
-* Recompile Casablanca
-
-	1. Open the ReCap project in Visual Studio 2012 (or 2013)
-
-	2. Compile. The Build will fail, but this step is required to force NuGet to create the Casablanca NuGet local package and its dependencies.
-	
-			openssl version 1.0.1.25
-			zlib version 1.2.8.7
-
-	3. Download Casablanca source code from CodePlex or my fork
-
-			git clone https://git01.codeplex.com/casablanca
-			cd casablanca
-			git tag -l
-			git checkout v2.3.0
-
-		or
-
-			git clone https://git01.codeplex.com/forks/cyrillef/casablanca
-			cd casablanca
-			git tag -l
-			git checkout cyrillev2.3.0
-			
-	4. Open the Casablanca project in Visual Studio 2012 (or 2013)
-	
-		- casablanca110.desktop.sln = Visual Studio 2012
-		- casablanca120.desktop.sln = Visual Studio 2013
-
-	5. Patch the following files if you cloned from CodePles: (no need if you cloned from my fork)
-
-		- Release/include/cpprest/http_constants.dat
-		- Release/include/cpprest/oauth1.h
-		- Release/src/http/oauth/oauth1.cpp
-
-	  files with the ones from the Casablanca directory from the ReCap download
-	  
-	6. Recompile Casablanca in the configurations you need (typically x64).
-	
-	7. Copy for each configurations the following files (target folder may change depending of your platform/configuration)
-	
-		- Release/include/cpprest/oauth1.h and Release/include/cpprest/http_constants.dat to 'Autodesk-ReCap-Samples\Console Cpp\packages\cpprestsdk.2.3.0\build\native\include\cpprest'
-		
-		For Debug-x64
-		- <Your_Casablanca>\Binaries\x64\Debug\\*.lib to 'Autodesk-ReCap-Samples\Console Cpp\packages\cpprestsdk.2.3.0\build\native\lib\x64\v110\Debug\Desktop'
-		- <Your_Casablanca>\Binaries\x64\Debug\\*.dll and *.pdb to 'Autodesk-ReCap-Samples\Console Cpp\packages\cpprestsdk.2.3.0\build\native\bin\x64\v110\Debug\Desktop'
-
-		For Release-x64
-		- <Your_Casablanca>\Binaries\x64\Release\\*.lib to 'Autodesk-ReCap-Samples\Console Cpp\packages\cpprestsdk.2.3.0\build\native\lib\x64\v110\Release\Desktop'
-		- <Your_Casablanca>\Binaries\x64\Release\\*.dll and *.pdb to 'Autodesk-ReCap-Samples\Console Cpp\packages\cpprestsdk.2.3.0\build\native\bin\x64\v110\Release\Desktop'
 	
 	
-* Compile the ReCap sample
+* Build the ReCap sample project using Visual Studio 2015
 
 	1. Copy the UserSettings_.h into UserSettings.h
 	
@@ -125,17 +80,10 @@ ReCap -c properties
 ReCap -c start
 ReCap -c progress
 
-once 'progress' reports no error and completion at 100%
+once 'progress' reports no error and completion at 100%, you can then querie final properties, and retrieve the mesh.
 
 ReCap -c properties
 ReCap -c result
-```
-
-Older version of Casablanca
--------------------------
-
-If you prefer using v2.2.0 to not have the dependencies on openssl and zlib, read [this](https://github.com/Developer-ReCap-Autodesk/Console-Cpp/tree/bc0b7d10eca467910bb0f5c74cf268e849c14639) and get the [v2.2.0](https://github.com/Developer-ReCap-Autodesk/Console-Cpp/releases) tag version of the sample.
-
 
 --------
 

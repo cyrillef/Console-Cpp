@@ -20,7 +20,7 @@
 //
 #pragma once
 
-#include <cpprest/basic_types.h>
+#include <cpprest/details/basic_types.h>
 #include <cpprest/oauth1.h>
 
 #define CALLBACK_URL U("http://localhost:8089/json")

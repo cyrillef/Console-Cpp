@@ -20,7 +20,7 @@
 //
 #pragma once
 
-#include <cpprest/basic_types.h>
+#include <cpprest/details/basic_types.h>
 #include <cpprest/filestream.h>
 
 typedef std::basic_stringstream<unsigned char, std::char_traits<unsigned char>,
