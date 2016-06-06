@@ -13,28 +13,25 @@ This sample is a command line sample where you control the various ReCap stage i
 
 The Reality Capture API Beta provides a web service to create textured mesh from a set of photos, and can request an automatic 3D calibration. The REST API provides a similar service as the [Autodesk ReCap 360](http://www.autodesk.com/products/recap-360/overview) web application. The purpose of this sample is to show an application that can provide a Reality Capture work flow using photographic images.
 
-Description
---------------------
+## Description
+
 This sample uses the C++ based CPP REST SDK  to demonstrate how to use the Reality Capture API.
 
-Dependencies
---------------------
+## Dependencies
+
 This sample is dependent of the following 3rd party extension:
 
 * The [C++ RESTful SDK](https://github.com/Microsoft/cpprestsdk) - version 2.8.0 (formerly known as Casablanca)
 * The Visual Studio project is referecing the library direcly, and will get the SDK during the first buuld.
 
 
-Setup Instructions
--------------------------
-
+## Setup Instructions
 	
-	
-* Build the ReCap sample project using Visual Studio 2015
+* Build the ReCap sample project using Visual Studio 2015:
 
 	1. Copy the UserSettings_.h into UserSettings.h
 	
-	2. Open the ReCap project in Visual Studio 2012 (or 2013)
+	2. Open the ReCap project in Visual Studio 2015
 
 	3. Edit UserSettings.h, and replace the following key strings with appropriate value
            * CONSUMER_KEY
@@ -45,8 +42,7 @@ Setup Instructions
 	4. Compile and you are ready to go.
            use the -h command argument to get help.
 	
-Usage Instructions
--------------------------
+## Usage Instructions
 
 The command will save your current PhotosceneID and oAuth token in local files, you can delete these files to reset the system.
 
@@ -72,7 +68,7 @@ Usage:    ReCap [-d] [-y] [-r] [-h] [-i photosceneid] [-c command] [-p photo(s)]
 	-h	Help - this message
 ```
 
-Typical scenario:
+#### Typical scenario:
 ```
 ReCap -c create
 ReCap -c upload -p ../Examples/Tirelire
@@ -80,19 +76,20 @@ ReCap -c properties
 ReCap -c start
 ReCap -c progress
 
+```
 once 'progress' reports no error and completion at 100%, you can then querie final properties, and retrieve the mesh.
-
+```
 ReCap -c properties
 ReCap -c result
 
---------
+```
 
 ## License
 
 This sample is licensed under the terms of the [MIT License](http://opensource.org/licenses/MIT). Please see the [LICENSE](LICENSE) file for full details.
 
 
-## Written by
+## Credits
 
 Cyrille Fauvel (Autodesk Developer Network)  
 http://www.autodesk.com/adn  
